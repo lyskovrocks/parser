@@ -1,16 +1,14 @@
-# This is a sample Python script.
+import requests
+from bs4 import BeautifulSoup
+import telegram_sender
+def get_price_from_popmusic(product):
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+    web_site = 'https://pop-music.ru/products/'
+    find_product = product
 
+    web_site_text = requests.get(web_site + find_product).text
+    soup = BeautifulSoup(web_site_text, 'html.parser')
+    price_today = soup.find(class_='productfull__newprice').text
+    return price_today
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+telegram_sender.send_message(get_price_from_popmusic('gitarnaya-radiosistema-line-6-relay-g30-888880006013/'))
