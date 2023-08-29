@@ -1,10 +1,10 @@
 import telegram_sender
 from Service.Parser.MainParser import MainParser
-from Service.Parser.Mirm import Mirm
-from Service.Parser.PopMusic import PopMusic
+from Service.Parser.MirmParser import MirmParser
+from Service.Parser.PopMusicParser import PopMusicParser
 
 
-popmusic = PopMusic()
+popmusic = PopMusicParser()
 print(popmusic.get_price_by_item('gitarnaya-radiosistema-line-6-relay-g30-888880006013/'))
 
 
