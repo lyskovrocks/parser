@@ -3,3 +3,6 @@ class MirmParser(MainParser):
     def __init__(self):
         self.web_site = 'https://mirm.ru/catalog/products/'
         self.find_class = "product-coast"
+
+    def __str__(self):
+        return "mirm"

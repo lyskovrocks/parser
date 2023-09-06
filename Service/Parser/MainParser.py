@@ -12,6 +12,9 @@ class MainParser:
         price_today = soup.find_all(class_ = self.find_class)
         return price_today
 
+    def __str__(self):
+        return "abstract"
+
 
 
 

@@ -1,0 +1,14 @@
+{
+  "find_object": {
+    "name": "Line 6 Relay",
+    "parsers": {
+      "mirm": "line_6_relay_g30",
+      "pop": "gitarnaya-radiosistema-line-6-relay-g30-888880006013/"
+    },
+    "last_price": "27200",
+    "price_history": [
+      "27200",
+      "27200"
+    ]
+  }
+}
