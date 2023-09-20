@@ -1,15 +1,22 @@
-import telegram_sender
+from Service.Database.JsonDatabaseLink import JsonDataBaseLink
+from Service.Parser.ParserLink import parser_link
 from Service.Parser.MainParser import MainParser
-from Service.Parser.MirmParser import MirmParser
-from Service.Parser.PopMusicParser import PopMusicParser
-from Service.Parser.DjStoreParser import DjStoreParser
+import telegram_sender
+import os
 
+jsdb = JsonDataBaseLink()
+datebase = jsdb.datebase
 
-popmusic = PopMusicParser()
-mirm = MirmParser()
+for parsers, find_object in datebase['find_object']['parsers'].items():
+    parser = parser_link[parsers]
+    current_price = int(''.join(filter(str.isdigit, parser.get_price_by_item(find_object)[0].text)))
+    datebase["find_object"]["price_history"].append(current_price)
 
-print(mirm.get_price_by_item('line_6_relay_g30')[0].text.replace(' ',''))
-telegram_sender.send_message(
-    f"Mir Music price: {mirm.get_price_by_item('line_6_relay_g30')[0].text}\n"
-    f"Pop Music price: {popmusic.get_price_by_item('gitarnaya-radiosistema-line-6-relay-g30-888880006013/')[0].text}")
-
+    minimal_price = datebase["find_object"]["minimal_price"]
+    if current_price < minimal_price:
+        telegram_sender.send_message(
+            f'Цена на {datebase["find_object"]["name"]} изменилась\n{minimal_price} >>> {current_price}\nМагазин: {parsers}')
+        datebase["find_object"]["minimal_price"] = current_price
+        datebase["find_object"]["minimal_price_shop"] = parsers
+jsdb.save()
+telegram_sender.send_message(f'---')

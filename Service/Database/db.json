@@ -1,12 +1,1 @@
-{
-  "find_object": {
-    "name": "LINE 6 RELAY G30",
-    "parsers": {
-      "mirm": "line_6_relay_g30",
-      "popmusic":"gitarnaya-radiosistema-line-6-relay-g30-888880006013/"
-    },
-    "current_price": 0,
-    "last_price": 0,
-    "price_history": []
-  }
-}
+{"find_object": {"name": "LINE 6 RELAY G30", "parsers": {"mirm": "line_6_relay_g30", "popmusic": "gitarnaya-radiosistema-line-6-relay-g30-888880006013/"}, "minimal_price": 27200, "minimal_price_shop": "mirm", "price_history": [27200, 27200, 27200, 27200, 27200, 27200, 27200, 27200, 27200, 27200, 27200, 27200, 27200, 27200, 27200, 27200]}}

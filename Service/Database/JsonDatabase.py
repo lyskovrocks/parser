@@ -1,2 +1,0 @@
-class JsonDataBase:
-    pass
